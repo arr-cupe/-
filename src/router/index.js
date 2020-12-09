@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store/store.js'
 
 Vue.use(Router)
 const login =()=>import('../pages/login/login')
@@ -63,7 +64,7 @@ export const indexRouters = [
     name:'秒杀活动'
   },
 ]
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path:'/login',
@@ -75,7 +76,14 @@ export default new Router({
       children:[
         {
           path:'home',
-          component:home
+          component:home,
+          beforeEnter(to,from,next){
+            if(from.path=='/login' && store.state.login.list.menus){
+              next()
+            }else{
+              next('/login');
+            }
+          }
         },
         {
           path:'',
@@ -90,3 +98,22 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to,from,next)=>{
+  // console.log(to);
+  // console.log(from);
+  // console.log(next);
+  if(to.path=='/login'||to.path=='/'){
+    next();
+  }
+  if(store.state.login.menus){
+    next('/index')
+  }else{
+    next()
+  }
+})
+console.log(store);
+
+
+
+export default router

@@ -153,7 +153,7 @@ export const reqLogin = (data) => {
     return axios({
         url: bufUrl + '/api/userlogin',
         method: 'POST',
-        data:data
+        data: data
     })
 }
 
@@ -254,12 +254,158 @@ export const reqSpecsDel = (id) => {
     })
 }
 
+// 获取商品规格总数
+export const reqSpecsCount = () => {
+    return axios({
+        url: bufUrl + '/api/specscount',
+        method: 'GET'
+    })
+}
+
 // ----------------------------商品管理------------------------------
 // 商品添加
 export const reqGoodAdd = (data) => {
+    var form = new FormData();
+    for (let i in data) {
+        form.append(i, data[i]);
+    }
     return axios({
         url: bufUrl + '/api/goodsadd',
         method: 'POST',
+        data: form
+    })
+}
+
+// 请求列表数据
+export const reqgoodList = (params) => {
+    return axios({
+        url: bufUrl + '/api/goodslist',
+        method: 'GET',
+        params: params
+    })
+}
+// 请求一条数据
+export const reqgoodListOne = (id) => {
+    return axios({
+        url: bufUrl + '/api/goodsinfo',
+        method: 'GET',
+        params: id
+    })
+}
+
+// 数据修改
+export const reqgoodListDit = (data) => {
+    var form = new FormData();
+    for (let i in data) {
+        form.append(i, data[i]);
+    }
+    return axios({
+        url: bufUrl + '/api/goodsedit',
+        method: 'POST',
+        data: form
+    })
+}
+// 删除数据
+export const reqgoodListDel = (id) => {
+    return axios({
+        url: bufUrl + '/api/goodsdelete',
+        method: 'POST',
+        data: id
+    })
+}
+// 获取商品总数
+export const reqgoodCont = () => {
+    return axios({
+        url: bufUrl + '/api/goodscount',
+        method: 'GET'
+    })
+}
+
+// --------------------轮播图----------------
+// 轮播图添加
+export const reqbannerAdd = (data) => {
+    var form = new FormData();
+    for (let i in data) {
+        form.append(i, data[i]);
+    }
+    return axios({
+        url: bufUrl + '/api/banneradd',
+        method: 'POST',
+        data: form
+    })
+}
+// 获取列表
+export const reqbannerList = () => {
+    return axios({
+        url: bufUrl + '/api/bannerlist',
+        method: 'GET'
+    })
+}
+// 获取一条数据
+export const reqbannerListOne = (id) => {
+    return axios({
+        url: bufUrl + '/api/bannerinfo',
+        method: 'GET',
+        params: id
+    })
+}
+// 修改数据
+export const reqbannerDit = (data) => {
+    var form = new FormData();
+    for (let i in data) {
+        form.append(i, data[i]);
+    }
+    return axios({
+        url: bufUrl + '/api/banneredit',
+        method: 'POST',
+        data: form
+    })
+}
+// 删除数据
+export const reqbannerDel = (id) => {
+    return axios({
+        url: bufUrl + '/api/bannerdelete',
+        method: 'POST',
+        data: id
+    })
+}
+
+// ------------------秒杀活动----------
+export const reqseckadd = (data) => {
+    return axios({
+        url: bufUrl + '/api/seckadd',
+        method: 'POST',
         data: data
+    })
+}
+// 获取列表
+export const reqsecklist = () => {
+    return axios({
+        url: bufUrl + '/api/secklist',
+        method: 'GET'
+    })
+}
+// 获取一条数据
+export const reqsecklistone = (id) => {
+    return axios({
+        url: bufUrl + '/api/seckinfo',
+        method: 'GET',
+        params: id
+    })
+}
+// 修改数据
+export const reqseckdit = (data) => {
+    return axios({
+        url: bufUrl + '/api/seckedit',
+        method: 'POST',
+        data: data
+    })
+}
+// 删除数据
+export const reqseckdel = (id) => {
+    return axios({
+        url: bufUrl + '/api/seckdelete',
+        method: 'POST',
+        data: id
     })
 }

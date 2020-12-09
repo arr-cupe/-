@@ -2,23 +2,32 @@
   <div>
     <el-container>
       <el-aside width="199px">
-        <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#20222a" text-color="#fff" active-text-color="#ffd04b" router>
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          background-color="#20222a"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+          router
+        >
           <el-menu-item index="/index/home" width="203px">
             <i class="el-icon-menu"></i>
             <span slot="title">导航二</span>
           </el-menu-item>
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-s-tools"></i>
-              <span>系统管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="/index/menu">菜单管理</el-menu-item>
-              <el-menu-item index="/index/role">角色管理</el-menu-item>
-              <el-menu-item index="/index/manger">管理员管理</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="3">
+
+          <div v-for="item in list.menus" :key="item.id">
+            <el-submenu :index="item.title" v-if="item.children">
+              <template slot="title">
+                <i :class="item.icon"></i>
+                <span>{{item.title}}</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item :index="'/index'+i.url" v-for="i in item.children" :key="i.id">{{i.title}}</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item :index="'/index'+item.url" v-else>{{item.title}}</el-menu-item>
+          </div>
+          <!-- <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-s-goods"></i>
               <span>商城管理</span>
@@ -31,11 +40,18 @@
               <el-menu-item index="/index/banner">轮播图管理</el-menu-item>
               <el-menu-item index="/index/seckill">秒杀活动</el-menu-item>
             </el-menu-item-group>
-          </el-submenu>
+          </el-submenu> -->
         </el-menu>
       </el-aside>
       <el-container>
-        <el-header><div class="headerTop"><span>{{list.username}}</span><span><el-button>退出</el-button></span></div></el-header>
+        <el-header
+          ><div class="headerTop">
+            <span>{{ list.username }}</span
+            ><span
+              ><el-button type="danger" @click="danger">退出</el-button></span
+            >
+          </div></el-header
+        >
         <el-main>
           <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -48,14 +64,23 @@
   </div>
 </template>
 <script>
-import {mapActions,mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
-  computed:{
+  computed: {
     ...mapGetters({
-      list:'login/list'
-    })
+      list: "login/list",
+    }),
   },
   components: {},
+  methods: {
+    ...mapActions({
+      requestRoleList: "login/requestRoleList",
+    }),
+    danger() {
+      this.$router.push("/login");
+      this.requestRoleList({});
+    },
+  },
 };
 </script>
 <style>
@@ -84,7 +109,10 @@ export default {
 .el-menu-item-group {
   overflow: hidden;
 }
-.el-menu{
-    border: none;
+.el-menu {
+  border: none;
+}
+.headerTop {
+  float: right;
 }
 </style>

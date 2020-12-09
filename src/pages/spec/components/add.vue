@@ -77,6 +77,7 @@ export default {
   methods: {
     ...mapActions({
       reqchangeList: "spec/reqchangeList",
+      reqchangeCont: "spec/reqchangeCont",
     }),
     empty() {
       this.form = {
@@ -134,6 +135,7 @@ export default {
         console.log(res);
         this.hide();
         this.reqchangeList();
+        this.reqchangeCont();
       });
     },
     update() {

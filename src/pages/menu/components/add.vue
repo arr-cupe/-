@@ -52,9 +52,9 @@
           <el-select v-model="form.url" placeholder="请选择">
             <el-option
               v-for="item in indexRouters"
-              :label="'/' + item.path"
+              :label="item.name"
               :key="item.path"
-              :value="item.name"
+              :value="'/' + item.path"
             >
             </el-option>
           </el-select>

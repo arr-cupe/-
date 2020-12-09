@@ -7,6 +7,9 @@ import user from './modles/user'
 import classify from './modles/classify'
 import spec from './modles/spec'
 import login from './modles/login'
+import goods from './modles/goods'
+import banner from './modles/banner'
+import seckill from './modles/seckill'
 export default new Vuex.Store({
     modules:{
         menuList,
@@ -14,6 +17,9 @@ export default new Vuex.Store({
         user,
         classify,
         spec,
-        login
+        login,
+        goods,
+        banner,
+        seckill
     }
 })

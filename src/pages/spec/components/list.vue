@@ -54,7 +54,24 @@
           <el-button type="danger" @click="del(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
+      <!-- 分页 -->
+      <!-- <el-pagination
+      align='right'
+      :page-size="2"
+      layout="prev, pager, next"
+      :total="total"
+      @current-change='changeCur'
+    >
+    </el-pagination> -->
     </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="total"
+      :page-size="2"
+      @current-change="changeCur"
+    >
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -64,6 +81,7 @@ export default {
   computed: {
     ...mapGetters({
       list: "spec/list",
+      total: "spec/total",
     }),
   },
   components: {},
@@ -73,19 +91,27 @@ export default {
   methods: {
     ...mapActions({
       reqchangeList: "spec/reqchangeList",
+      reqchangeCont: "spec/reqchangeCont",
+      reqchangecur: "spec/reqchangecur",
     }),
 
     del(id) {
       reqSpecsDel({ id: id }).then((res) => {
         this.reqchangeList();
+         this.reqchangecur(1)
       });
     },
     chang(id) {
       this.$emit("etil", id);
     },
+    changeCur(a) {
+      console.log(a);
+      this.reqchangecur(a);
+    },
   },
   mounted() {
     this.reqchangeList();
+    this.reqchangeCont();
   },
 };
 </script>
@@ -95,7 +121,6 @@ export default {
 }
 .myspan {
   display: inline-block;
-  width: 50px;
   height: 22px;
   background-color: rgba(0, 128, 128, 0.486);
   margin-left: 3px;
