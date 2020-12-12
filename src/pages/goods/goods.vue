@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="box">
      <el-button type='primary' @click="changeAdd">添加</el-button>
      <v-add :info='info' ref="one"></v-add>
      <v-list @emit='emit($event)'></v-list>
@@ -35,8 +35,11 @@ methods:{
 }
 };
 </script>
-<style>
+<style scope>
 .el-button{
     margin-top: 15px;
+}
+.box{
+    overflow-x: hidden;
 }
 </style>

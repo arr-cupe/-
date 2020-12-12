@@ -70,6 +70,7 @@ export default {
         img: null,
         status: 1,
       };
+      this.imageUrl = ''
     },
     look(id) {
       reqbannerListOne({ id: id }).then((res) => {

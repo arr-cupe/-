@@ -15,32 +15,25 @@
             <span slot="title">导航二</span>
           </el-menu-item>
 
-          <div v-for="item in list.menus" :key="item.id">
+          <div v-for="item in list.menus" :key="item.id" style="line-height:30px">
             <el-submenu :index="item.title" v-if="item.children">
               <template slot="title">
                 <i :class="item.icon"></i>
-                <span>{{item.title}}</span>
+                <span>{{ item.title }}</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item :index="'/index'+i.url" v-for="i in item.children" :key="i.id">{{i.title}}</el-menu-item>
+                <el-menu-item
+                  :index="'/index' + i.url"
+                  v-for="i in item.children"
+                  :key="i.id"
+                  >{{ i.title }}</el-menu-item
+                >
               </el-menu-item-group>
             </el-submenu>
-            <el-menu-item :index="'/index'+item.url" v-else>{{item.title}}</el-menu-item>
+            <el-menu-item :index="'/index' + item.url" v-else>{{
+              item.title
+            }}</el-menu-item>
           </div>
-          <!-- <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-s-goods"></i>
-              <span>商城管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="/index/classify">商品分类</el-menu-item>
-              <el-menu-item index="/index/spec">商品规格</el-menu-item>
-              <el-menu-item index="/index/goods">商品管理</el-menu-item>
-              <el-menu-item index="/index/vip">会员管理</el-menu-item>
-              <el-menu-item index="/index/banner">轮播图管理</el-menu-item>
-              <el-menu-item index="/index/seckill">秒杀活动</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu> -->
         </el-menu>
       </el-aside>
       <el-container>
@@ -83,7 +76,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scope>
 .el-header {
   background-color: #b3c0d1;
   color: #333;
@@ -95,8 +88,8 @@ export default {
   width: 199px;
   color: #333;
   text-align: center;
-  line-height: 200px;
-  height: 100vh;
+  line-height: 100px;
+  min-height: 100vh;
   overflow-y: hidden;
   background-color: #20222a;
   min-width: 200px;

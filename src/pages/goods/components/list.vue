@@ -58,7 +58,7 @@
           <el-button size="mini" type="danger" v-else>禁用</el-button>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="201">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button type="primary" @click="chang(scope.row.id)"
             >编辑</el-button

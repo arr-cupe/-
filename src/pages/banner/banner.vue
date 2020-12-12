@@ -24,6 +24,7 @@ methods:{
         this.info.isShow = !this.info.isShow;
         this.info.isAdd = true;
         this.info.title = '轮播图添加';
+        this.$refs.one.empty();
     },
     emit(e){
         // console.log(e);
@@ -36,4 +37,7 @@ methods:{
 };
 </script>
 <style>
+.el-button{
+    margin-top: 15px;
+}
 </style>

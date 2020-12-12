@@ -54,15 +54,6 @@
           <el-button type="danger" @click="del(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
-      <!-- 分页 -->
-      <!-- <el-pagination
-      align='right'
-      :page-size="2"
-      layout="prev, pager, next"
-      :total="total"
-      @current-change='changeCur'
-    >
-    </el-pagination> -->
     </el-table>
     <el-pagination
       background
